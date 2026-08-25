@@ -1,0 +1,1 @@
+export const sanitizeString = (str: string): string => str.trim().toLowerCase();

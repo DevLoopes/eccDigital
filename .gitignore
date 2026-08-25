@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+.pnpm-store/
+.yarn/
+
+# Arquivos de Build / Compilação do TypeScript
+dist/
+build/
+*.tsbuildinfo
+
+# Variáveis de Ambiente e Chaves (NUNCA envie para o repositório)
+.env
+.env.*
+!.env.example
+
+# Ignora o cliente gerado localmente (geralmente em node_modules, mas pode ser customizado)
+/packages/database/generated/
+# Bancos de dados SQLite gerados em testes
+*.db
+*.db-journal
+
+.vscode/
