@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* Módulo e Resolução (Configurações modernas para Node/Monorepo) */
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022"],
+
+    /* Geração de Tipos (O ESSENCIAL PARA O MONOREPO FUNCIONAR) */
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    
+    /* Caso não use o tsup e use o próprio tsc para build, defina a pasta de saída: */
+    "outDir": "./dist",
+    "rootDir": ".",
+
+    /* Regras de Rigidez (Sempre boas para Drizzle e Banco de Dados) */
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  
+  /* O que o TypeScript deve ler e o que ele deve ignorar */
+  "include": ["src"],
+  "exclude": [
+    "node_modules", 
+    "dist", 
+    "drizzle", 
+    "drizzle.config.ts"
+  ]
+}

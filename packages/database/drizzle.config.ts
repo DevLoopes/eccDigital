@@ -1,8 +1,11 @@
-import 'dotenv/config'; // Importante: carrega as variáveis de ambiente do .env
+import { config } from 'dotenv';
 import { defineConfig } from 'drizzle-kit';
+import path from 'path';
+
+config({ path: path.resolve(process.cwd(), '../../.env') });
 
 export default defineConfig({
-  schema: './api/modules/**/persistence/*.repository.ts', // Caminho para os schemas Drizzle
+  schema: './src/schema.ts',
   out: './drizzle',
   dialect: 'postgresql',
   dbCredentials: {

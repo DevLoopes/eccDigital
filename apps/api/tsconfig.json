@@ -3,8 +3,8 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "outDir": "./dist",
-    "rootDirs": ["./api"],
+    "rootDir": ".",
+    "outDir": "dist",
 
     "types": ["node"],
 
@@ -13,5 +13,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["api/**/*", "drizzle.config.ts"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

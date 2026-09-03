@@ -1,14 +1,12 @@
-import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
-import pg from 'pg';
-import { env } from '../common/configs/env.schemas.js';
+import { getDrizzle } from '@repo/database';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
 export class DrizzleService {
   private static instance: NodePgDatabase;
 
   public static getInstance(): NodePgDatabase {
     if (!DrizzleService.instance) {
-      const pool = new pg.Pool({ connectionString: env.DATABASE_URL });
-      DrizzleService.instance = drizzle(pool);
+      DrizzleService.instance = getDrizzle();
     }
     return DrizzleService.instance;
   }

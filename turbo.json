@@ -1,0 +1,46 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "tui",
+  "globalDependencies": [".env"],
+  "globalPassThroughEnv": ["TELEMETRY_BACKEND_ENABLED", "NODE_ENV"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "out/**"],
+      "env": ["DATABASE_URL", "NODE_ENV"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "test": {},
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {
+      "dependsOn": ["^dev"],
+      "cache": false,
+      "persistent": true
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
+    },
+    "db:reset": {
+      "cache": false
+    },
+    "db:deploy": {
+      "cache": false
+    },
+    "db:studio": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    }
+  }
+}
