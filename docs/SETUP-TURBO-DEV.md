@@ -18,15 +18,15 @@ Visão geral do fluxo
 Arquivos importantes e observações
 - `turbo.json`: já contém `dev` como task persistente e inclui `.env` em `globalDependencies`.
 - `docker-compose.yml`: define o serviço `postgres-db` e um serviço `api` para rodar em container (comentado o serviço `web`).
-- `packages/database/drizzle.config.ts`: lê `../../.env` e usa `DB_URL` via `process.env.DB_URL`.
+- `packages/database/drizzle.config.ts`: lê `../../.env` e usa `DATABASE_URL` via `process.env.DATABASE_URL`.
 - `apps/api/src/infra/common/configs/env.schemas.ts`: o servidor espera `DATABASE_URL` no `process.env` (via `envSchema`).
 
 Atenção: nome das variáveis de ambiente
-- Há uma pequena inconsistência: `packages/database` (Drizzle) usa `DB_URL` enquanto `apps/api` espera `DATABASE_URL`.
+- Há uma pequena inconsistência: `packages/database` (Drizzle) usa `DATABASE_URL` enquanto `apps/api` espera `DATABASE_URL`.
 - Soluções recomendadas (escolha uma):
   1) Definir ambas no `.env` (mais simples):
-     - `DB_URL=postgresql://user:pass@localhost:5432/dbname`
-     - `DATABASE_URL=$DB_URL` (alguns shells/gestores de env suportam isso; caso não, duplique o valor)
+     - `DATABASE_URL=postgresql://user:pass@localhost:5432/dbname`
+     - `DATABASE_URL=$DATABASE_URL` (alguns shells/gestores de env suportam isso; caso não, duplique o valor)
   2) Unificar o código: ajustar `drizzle.config.ts` para usar `DATABASE_URL` (requer alterar código)
 
 Exemplo mínimo de `.env` (na raiz do repositório)
@@ -38,7 +38,6 @@ POSTGRES_PORT=5432
 API_PORT=3333
 WEB_PORT=3000
 # URLs usadas pelo código/Drizzle
-DB_URL=postgresql://postgres:postgres@localhost:5432/sifr_db
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/sifr_db
 
 Passo a passo — opção recomendada (sem alterar código)
@@ -89,7 +88,7 @@ Mas como você pediu para não alterar o código, manter os passos manuais (`doc
 Verificações e troubleshooting
 - Se `apps/api` falhar ao conectar no banco:
   - Verifique se o container Postgres está rodando: `docker ps`.
-  - Verifique o valor de `DATABASE_URL` (ou `DB_URL`) no `.env` e se corresponde ao host/porta expostos pelo `docker-compose`.
+  - Verifique o valor de `DATABASE_URL` no `.env` e se corresponde ao host/porta expostos pelo `docker-compose`.
   - Logs do Postgres: `docker logs my_postgres`.
 - Se `turbo dev` não iniciar algum app:
   - Confirme que cada app tem `script` `dev` no respectivo `package.json`.
@@ -102,7 +101,7 @@ Como o Turbo lida com variáveis de ambiente
 
 Próximos passos sugeridos (opcionais)
 - Criar um pequeno package `dev-tools` com script `dev` que executa `docker compose up` para que o banco também seja controlado pelo `turbo dev`.
-- Unificar nomes de variáveis de ambiente (`DB_URL` vs `DATABASE_URL`) para reduzir ambiguidade.
+- Unificar nomes de variáveis de ambiente (`DATABASE_URL`) para reduzir ambiguidade.
 - Adicionar healthchecks e scripts de wait-for-db no `apps/api` para evitar tentativas de conexão antes do DB ficar pronto.
 
 Conclusão
