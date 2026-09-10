@@ -15,7 +15,7 @@ export class UsersController {
   }
 
   private async getUsers(req: Request, res: Response) {
-    const users = await this.usersService.listUsers();
+    const users = await this.usersService.findAll();
     res.json(users);
   }
 

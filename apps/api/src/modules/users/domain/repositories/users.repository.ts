@@ -1,7 +1,18 @@
-import { User } from '../entities/users.entity.js';
+import type { User } from '../entities/users.entity.js';
 
-export interface IUsersRepository {
-  findAll(): Promise<User[]>;
-  findById(id: string): Promise<User | null>;
-  create(user: User): Promise<User>;
+export type CreateUserDTO = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type GetUserQuery = {
+  name?: string;
+  email?: string;
+};
+
+export abstract class IUsersRepository {
+  abstract findAll(filters?: GetUserQuery): Promise<User[]>;
+  abstract findById(id: string): Promise<User | null>;
+  abstract create(user: User): Promise<User>;
 }
