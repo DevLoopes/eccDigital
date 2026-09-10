@@ -1,7 +1,8 @@
 import { check, index, numeric, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
-import { categories, transactionTypeEnum, users } from "../schema";
+import { categories } from "./categories.js";
+import { transactionTypeEnum } from "./transactionTypeEnum.js";
+import { users } from "./users.js";
 import { sql } from "drizzle-orm/sql/sql";
-
 
 export const transactions = pgTable('transactions', {
     id: uuid('id').defaultRandom().primaryKey(),

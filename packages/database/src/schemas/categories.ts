@@ -1,5 +1,6 @@
 import { index, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
-import { transactionTypeEnum, users } from "../schema";
+import { transactionTypeEnum } from "./transactionTypeEnum.js";
+import { users } from "./users.js";
 
 export const categories = pgTable('categories', {
     id: uuid('id').defaultRandom().primaryKey(),
