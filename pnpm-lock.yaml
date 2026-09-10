@@ -211,9 +211,15 @@ importers:
         specifier: ^17.4.2
         version: 17.4.2
     devDependencies:
+      '@types/node':
+        specifier: ^22.20.1
+        version: 22.20.1
       turbo:
         specifier: ^2.10.12
         version: 2.10.12
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
 
   apps/api:
     dependencies:
@@ -1515,6 +1521,9 @@ packages:
 
   '@types/node@20.19.43':
     resolution: {integrity: sha512-6oYBAi5ikg4Pl+kGsoYtawUMBT2zZMCvPNF7pVLnHZfd1zf38DRiWn/gT01RYCdUqkv7Fhr+C9ot4/tb+2sVvA==}
+
+  '@types/node@22.20.1':
+    resolution: {integrity: sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==}
 
   '@types/node@26.4.1':
     resolution: {integrity: sha512-k97ENvZWtvA6yqz5/FS6a7duDgOPEeOQOc2iKS/nY6mX6qJUKtLnWzQS+Xj6tXweyj6ZcTAK2Qecetnvi9nCLA==}
@@ -5054,6 +5063,10 @@ snapshots:
   '@types/json5@0.0.29': {}
 
   '@types/node@20.19.43':
+    dependencies:
+      undici-types: 6.21.0
+
+  '@types/node@22.20.1':
     dependencies:
       undici-types: 6.21.0
 
