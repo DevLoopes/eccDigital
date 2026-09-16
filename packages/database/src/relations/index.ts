@@ -1,6 +1,8 @@
 import { eq } from 'drizzle-orm';
 import { type NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { users, categories, transactions } from '../schema.js';
+import { users } from '../schema/users.js';
+import { categories } from '../schema/categories.js';
+import { transactions } from '../schema/transactions.js';
 
 export const getUserCategories = async (db: NodePgDatabase, userId: string) => {
 	return db.select().from(categories).where(eq(categories.userId, userId));

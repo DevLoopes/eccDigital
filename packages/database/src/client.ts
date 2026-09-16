@@ -1,3 +1,4 @@
+// Conexão pg.Pool
 import { drizzle, type NodePgDatabase } from 'drizzle-orm/node-postgres';
 import pg from 'pg';
 import dotenv from 'dotenv';
@@ -34,4 +35,17 @@ export function getDrizzle(): NodePgDatabase {
   const pool = new pg.Pool({ connectionString });
   instance = drizzle(pool);
   return instance;
+}
+
+// Função utilitária para validar a conexão com o banco (usada na inicialização da app)
+export async function testConnection(): Promise<void> {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) throw new Error('Missing DATABASE_URL in the project root .env file.');
+
+  const pool = new pg.Pool({ connectionString });
+  try {
+    await pool.query('SELECT 1');
+  } finally {
+    await pool.end();
+  }
 }
