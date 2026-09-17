@@ -20,3 +20,10 @@ build/
 *.db-journal
 
 .vscode/
+
+# Turbo build cache and logs
+.turbo/
+turbo-build.log
+
+# Drizzle ORM generated meta (migration snapshots/journal) - optional
+packages/database/drizzle/meta/
