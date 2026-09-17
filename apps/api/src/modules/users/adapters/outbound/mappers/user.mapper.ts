@@ -1,4 +1,4 @@
-import { User } from '../../../domain/entities/users.entity.js';
+import { User } from '../../../domain/entities/user.entity.js';
 import crypto from 'crypto';
 
 export class UsersMapper {

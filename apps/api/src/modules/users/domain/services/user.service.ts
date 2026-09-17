@@ -1,5 +1,5 @@
-import { User } from '../entities/users.entity.js';
-import type { IUsersRepository, CreateUserDTO, GetUserQuery, DbError } from '../repositories/users.repository.js';
+import { User } from '../entities/user.entity.js';
+import type { IUsersRepository, CreateUserDTO, DbError } from '../repositories/user.repository.js';
 import { Result } from '../../../../infra/common/utils/result.js';
 
 export class UsersService {
@@ -14,8 +14,8 @@ export class UsersService {
     };
   }
 
-  async findAll(filters?: GetUserQuery): Promise<Result<User[], DbError>> {
-    return this.usersRepository.findAll(filters);
+  async findById(id: string): Promise<Result<User | null, DbError>> {
+    return this.usersRepository.get(id);
   }
 
   async registerUser(data: CreateUserDTO): Promise<Result<User, DbError>> {
