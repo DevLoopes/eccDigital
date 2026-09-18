@@ -11,7 +11,6 @@ export class TransactionsService {
       userId: transaction.userId,
       categoryId: transaction.categoryId,
       amount: transaction.amount,
-      type: transaction.type,
       transactionDate: transaction.transactionDate,
       description: transaction.description,
       createdAt: transaction.createdAt,
@@ -24,7 +23,6 @@ export class TransactionsService {
       userId: data.userId,
       categoryId: data.categoryId,
       amount: data.amount,
-      type: data.type, // precisa ser 'INCOME' | 'EXPENSE'
       transactionDate: data.transactionDate,
       description: data.description,
     });

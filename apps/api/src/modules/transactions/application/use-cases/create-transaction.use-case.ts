@@ -16,7 +16,6 @@ export class CreateTransactionUseCase {
   async execute(input: Input): Promise<Result<Transaction, DbError>> {
     const transaction = new Transaction({
       amount: input.amount,
-      type: input.type,
       transactionDate: input.transactionDate,
       description: input.description,
       categoryId: input.categoryId,

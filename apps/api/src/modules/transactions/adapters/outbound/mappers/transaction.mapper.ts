@@ -5,7 +5,6 @@ export class TransactionMapper {
         return new Transaction({
             id: raw.id,
             amount: Number(raw.amount),
-            type: raw.type,
             transactionDate: raw.transactionDate,
             description: raw.description,
             categoryId: raw.categoryId,
@@ -17,7 +16,6 @@ export class TransactionMapper {
         return {
             id: transaction.id,
             amount: transaction.amount?.toString(),
-            type: transaction.type,
             transactionDate: transaction.transactionDate,
             description: transaction.description,
             categoryId: transaction.categoryId,

@@ -5,7 +5,6 @@ export type CreateTransactionDTO = {
   userId: string;
   categoryId: string;
   amount: number;
-  type: 'INCOME' | 'EXPENSE';
   transactionDate: Date;
   description?: string;
 };
