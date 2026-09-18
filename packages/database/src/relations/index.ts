@@ -1,6 +1,5 @@
 import { eq } from 'drizzle-orm';
 import { type NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { users } from '../schema/users.js';
 import { categories } from '../schema/categories.js';
 import { transactions } from '../schema/transactions.js';
 

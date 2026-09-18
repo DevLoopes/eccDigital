@@ -6,7 +6,7 @@ export const categories = pgTable('categories', {
     id: uuid('id').defaultRandom().primaryKey(),
     userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
     name: varchar('name', { length: 100 }).notNull(),
-    type: transactionTypeEnum('Enum').notNull(),
+    type: transactionTypeEnum('type').notNull(),
 }, (table) => ({
     userIdIndex: index('idx_categories_user_id').on(table.userId),
 }));
