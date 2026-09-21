@@ -3,6 +3,7 @@ import { apiReference } from '@scalar/express-api-reference';
 import { buildDocs } from './infra/common/openapi/openapi.js';
 import { UsersModule } from './modules/users/user.module.js';
 import { TransactionsModule } from './modules/transactions/transaction.module.js';
+import { CategoriesModule } from './modules/categories/categorie.module.js';
 
 export class AppModule {
   public static bootstrap(): Express {
@@ -12,6 +13,7 @@ export class AppModule {
     // Importar o módulo já registra o Zod dele automaticamente
     app.use('/users', UsersModule);
     app.use('/transactions', TransactionsModule);
+    app.use('/categories', CategoriesModule);
 
     // Gera o OpenAPI automaticamente a partir dos schemas Zod
     const document = buildDocs();

@@ -1,7 +1,7 @@
 import { Categorie } from "../entities/categorie.entity.js";
 import { Result } from "../../../../infra/common/utils/result.js";
 
-export type CreateCategorieDTO {
+export type CreateCategorieDTO = {
     userId: string;
     name: string;
 }

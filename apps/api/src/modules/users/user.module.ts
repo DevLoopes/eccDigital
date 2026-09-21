@@ -23,7 +23,7 @@ registry.registerPath({
     },
   },
   responses: {
-    201: { description: 'Criado com sucesso' },
+    201: { description: 'Usuário criado com sucesso' },
   },
 });
 
