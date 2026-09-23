@@ -9,7 +9,7 @@ export const createTransactionDto = z.object({
     .refine((value) => Number.isFinite(value), {
       message: "O valor deve ser um número válido",
     }),
-  transactionDate: z.date(),
+  transactionDate: z.coerce.date(),
   description: z.string().trim().optional(),
   categoryId: z.string().uuid(),
   userId: z.string().uuid(),

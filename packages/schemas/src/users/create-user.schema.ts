@@ -1,8 +1,5 @@
 import { z } from "zod";
 
-// ==========================================
-// CREATE (POST /users) - input schema
-// ==========================================
 export const CreateUserSchema = z.object({
   name: z
     .string()
@@ -17,15 +14,3 @@ export const CreateUserSchema = z.object({
     .max(255, "A senha deve ter no máximo 255 caracteres"),
 });
 export type CreateUserInput = z.infer<typeof CreateUserSchema>;
-
-// ==========================================
-// RESPONSE (GET /users/:id) - output schema
-// ==========================================
-export const UserResponseSchema = z.object({
-  id: z.string().uuid(),
-  name: z.string(),
-  email: z.string().email(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
-export type UserResponse = z.infer<typeof UserResponseSchema>;
