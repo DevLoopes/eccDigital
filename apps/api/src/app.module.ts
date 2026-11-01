@@ -2,20 +2,22 @@ import express, { type Express } from 'express';
 import { apiReference } from '@scalar/express-api-reference';
 import { buildDocs } from './infra/common/openapi/openapi.js';
 import { UsersModule } from './modules/users/user.module.js';
-import { TransactionsModule } from './modules/transactions/transaction.module.js';
-import { CategoriesModule } from './modules/categories/categorie.module.js';
+import { TopicsModule } from './modules/topics/topic.module.js';
+import { LessonsModule } from './modules/lessons/lesson.module.js';
+import { AnnouncementsModule } from './modules/announcements/announcement.module.js';
+import { YouthScheduleModule } from './modules/youth-schedule/youth-schedule.module.js';
 
 export class AppModule {
   public static bootstrap(): Express {
     const app = express();
     app.use(express.json());
 
-    // Importar o módulo já registra o Zod dele automaticamente
     app.use('/users', UsersModule);
-    app.use('/transactions', TransactionsModule);
-    app.use('/categories', CategoriesModule);
+    app.use('/topics', TopicsModule);
+    app.use('/lessons', LessonsModule);
+    app.use('/announcements', AnnouncementsModule);
+    app.use('/youth-schedule', YouthScheduleModule);
 
-    // Gera o OpenAPI automaticamente a partir dos schemas Zod
     const document = buildDocs();
 
     app.use(

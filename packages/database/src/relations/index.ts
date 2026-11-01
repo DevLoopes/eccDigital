@@ -1,26 +1,25 @@
-import { eq } from 'drizzle-orm';
+import { eq, gte } from 'drizzle-orm';
 import { type NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { categories } from '../schema/categories.js';
-import { transactions } from '../schema/transactions.js';
+import { eccTopics } from '../schema/ecc-topics.js';
+import { eccLessons } from '../schema/ecc-lessons.js';
+import { churchAnnouncements } from '../schema/church-announcements.js';
+import { youthSchedule } from '../schema/youth-schedule.js';
 
-export const getUserCategories = async (db: NodePgDatabase, userId: string) => {
-	return db.select().from(categories).where(eq(categories.userId, userId));
+export const getTopics = async (db: NodePgDatabase) => {
+  return db.select().from(eccTopics);
 };
 
-export const getTransactionsByUser = async (db: NodePgDatabase, userId: string) => {
-	return db.select().from(transactions).where(eq(transactions.userId, userId));
+export const getLessonsByTopic = async (db: NodePgDatabase, topicId: string) => {
+  return db.select().from(eccLessons).where(eq(eccLessons.topicId, topicId));
 };
 
-export const getTransactionsWithCategory = async (db: NodePgDatabase, userId: string) => {
-	return db
-		.select({
-			id: transactions.id,
-			amount: transactions.amount,
-			description: transactions.description,
-			transactionDate: transactions.transactionDate,
-			categoryName: categories.name,
-		})
-		.from(transactions)
-		.leftJoin(categories, eq(transactions.categoryId, categories.id))
-		.where(eq(transactions.userId, userId));
+export const getActiveAnnouncements = async (db: NodePgDatabase) => {
+  return db.select().from(churchAnnouncements).where(eq(churchAnnouncements.active, true));
+};
+
+export const getUpcomingYouthSchedule = async (db: NodePgDatabase) => {
+  return db
+    .select()
+    .from(youthSchedule)
+    .where(gte(youthSchedule.eventDate, new Date()));
 };
