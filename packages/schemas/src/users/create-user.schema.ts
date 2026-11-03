@@ -1,16 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-export const CreateUserSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, "O nome deve ter no mínimo 2 caracteres")
-    .max(150, "O nome deve ter no máximo 150 caracteres"),
-  email: z.string().trim().email("E-mail inválido"),
-  password: z
-    .string()
-    .trim()
-    .min(6, "A senha deve ter no mínimo 6 caracteres")
-    .max(255, "A senha deve ter no máximo 255 caracteres"),
+export const createUserSchema = z.object({
+  name: z.string().min(3, 'O nome deve ter pelo menos 3 caracteres.'),
+  email: z.string().email('E-mail inválido.'),
+  password: z.string().min(6, 'A senha deve ter pelo menos 6 caracteres.'),
+  role: z.enum(['ALUNO', 'PROFESSOR', 'ADMIN']).default('ALUNO'),
 });
-export type CreateUserInput = z.infer<typeof CreateUserSchema>;
+
+export type CreateUserDTO = z.infer<typeof createUserSchema>;

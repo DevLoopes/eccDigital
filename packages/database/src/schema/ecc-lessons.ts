@@ -1,5 +1,5 @@
 import { pgTable, timestamp, uuid, varchar, text, date } from 'drizzle-orm/pg-core';
-import { eccTopics } from './ecc-topics';
+import { eccTopics } from './ecc-topics.js';
 import { users } from './users.js';
 
 export const eccLessons = pgTable('ecc_lessons', {
